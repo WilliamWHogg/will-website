@@ -8,7 +8,6 @@ import HeroSection from './components/HeroSection';
 import FeatureCards from './components/FeatureCards';
 import ProjectsGrid from './components/ProjectsGrid';
 import AboutContent from './components/AboutContent';
-import ContactContent from './components/ContactContent';
 
 // Home page component
 function Home() {
@@ -30,10 +29,6 @@ function About() {
   return <AboutContent />;
 }
 
-// Contact page component
-function Contact() {
-  return <ContactContent />;
-}
 
 function App() {
   return (
@@ -47,7 +42,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
             </Routes>
           </Box>
           <Footer />

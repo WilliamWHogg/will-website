@@ -4,15 +4,18 @@ import {
   Button, Chip, Fade, IconButton, CardMedia, Collapse, Divider
 } from '@mui/material';
 import {
-  Engineering, GitHub, ExpandMore, ExpandLess, PhotoLibrary, Launch
+  Engineering, GitHub, ExpandMore, ExpandLess, PhotoLibrary, Launch,
+  NavigateBefore, NavigateNext
 } from '@mui/icons-material';
 import theme from '../theme';
 import projectsData from '../data/projects.json';
 import ImageSlideshow from './ImageSlideshow';
+import { getProjectImage } from '../utils/imageLoader';
 
 const ProjectCard = ({ project, index }) => {
   const [expanded, setExpanded] = useState(false);
   const [slideshowOpen, setSlideshowOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -31,12 +34,9 @@ const ProjectCard = ({ project, index }) => {
   // Get the thumbnail image (first image in the array)
   const getThumbnailImage = () => {
     if (!project.images || project.images.length === 0) return null;
-    try {
-      return require(`../assets/projects/${project.folder}/${project.images[0]}`);
-    } catch (error) {
-      console.warn(`Image not found: ${project.folder}/${project.images[0]}`);
-      return null;
-    }
+    const img = getProjectImage(project.folder, project.images[0].file);
+    if (!img) console.warn(`Image not found: ${project.folder}/${project.images[0].file}`);
+    return img;
   };
 
   const thumbnailImage = getThumbnailImage();
@@ -85,29 +85,160 @@ const ProjectCard = ({ project, index }) => {
               }
             }}
           >
-            {/* Image Section */}
+            {/* Image Carousel Section */}
             <Box sx={{ position: 'relative' }}>
-              {thumbnailImage ? (
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={thumbnailImage}
-                  alt={project.title}
-                  sx={{ objectFit: 'cover' }}
-                />
+              {project.images && project.images.length > 0 ? (
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%',
+                  paddingTop: '66.67%', // 3:2 aspect ratio
+                  overflow: 'hidden'
+                }}>
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundImage: 'linear-gradient(135deg, #1a1a1a 0%, #252525 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative'
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        image={getProjectImage(project.folder, project.images[currentImageIndex]?.file || project.images[0]?.file)}
+                        alt={project.title}
+                        sx={{
+                          maxWidth: '100%',
+                          maxHeight: 'calc(100% - 40px)',
+                          width: 'auto',
+                          height: 'auto',
+                          objectFit: 'contain'
+                        }}
+                      />
+                      {project.images[currentImageIndex]?.caption && (
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            mt: 1,
+                            color: 'white',
+                            textAlign: 'center',
+                            maxWidth: '90%',
+                            textShadow: '0 1px 2px rgba(0,0,0,0.6)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            padding: '4px 8px',
+                            borderRadius: 1
+                          }}
+                        >
+                          {project.images[currentImageIndex].caption}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+
+                  {/* Navigation Arrows */}
+                  {project.images.length > 1 && (
+                    <>
+                      <IconButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex((prev) => 
+                            prev === 0 ? project.images.length - 1 : prev - 1
+                          );
+                        }}
+                        sx={{
+                          position: 'absolute',
+                          left: 8,
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                          color: 'white',
+                          zIndex: 2,
+                          '&:hover': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                          },
+                        }}
+                      >
+                        <NavigateBefore />
+                      </IconButton>
+                      <IconButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex((prev) => 
+                            prev === project.images.length - 1 ? 0 : prev + 1
+                          );
+                        }}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                          color: 'white',
+                          zIndex: 2,
+                          '&:hover': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                          },
+                        }}
+                      >
+                        <NavigateNext />
+                      </IconButton>
+
+                      {/* Image Counter */}
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 12,
+                          right: 12,
+                          backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                          color: 'white',
+                          padding: '4px 8px',
+                          borderRadius: 1,
+                          fontSize: '0.75rem',
+                          zIndex: 2
+                        }}
+                      >
+                        {currentImageIndex + 1} / {project.images.length}
+                      </Box>
+                    </>
+                  )}
+                </Box>
               ) : (
                 <Box
                   sx={{
-                    height: 200,
+                    position: 'relative',
+                    width: '100%',
+                    paddingTop: '66.67%',
                     background: `linear-gradient(135deg, ${theme.palette.primary.main}22, ${theme.palette.secondary.main}22)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    position: 'relative',
                     overflow: 'hidden',
                   }}
                 >
-                  <Engineering sx={{ fontSize: 80, color: 'primary.main', opacity: 0.3 }} />
+                  <Engineering sx={{ 
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    fontSize: 80,
+                    color: 'primary.main',
+                    opacity: 0.3
+                  }} />
                 </Box>
               )}
               
@@ -118,27 +249,6 @@ const ProjectCard = ({ project, index }) => {
                 size="small"
                 sx={{ position: 'absolute', top: 12, right: 12, zIndex: 2 }}
               />
-              
-              {/* Image gallery indicator */}
-              {project.images && project.images.length > 1 && (
-                <IconButton
-                  onClick={handleOpenSlideshow}
-                  sx={{
-                    position: 'absolute',
-                    bottom: 8,
-                    right: 8,
-                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                    color: 'white',
-                    zIndex: 2,
-                    '&:hover': {
-                      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    },
-                  }}
-                  size="small"
-                >
-                  <PhotoLibrary fontSize="small" />
-                </IconButton>
-              )}
             </Box>
 
             {/* Basic Content */}

@@ -5,17 +5,16 @@ import {
 import {
   NavigateBefore, NavigateNext, Close
 } from '@mui/icons-material';
+import { getProjectImage } from '../utils/imageLoader';
 
 const ImageSlideshow = ({ images, projectTitle, projectFolder, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const getImagePath = (imageName) => {
-    try {
-      return require(`../assets/projects/${projectFolder}/${imageName}`);
-    } catch (error) {
-      console.warn(`Slideshow image not found: ${projectFolder}/${imageName}`);
-      return null;
-    }
+  const getImagePath = (image) => {
+    if (!image) return null;
+    const img = getProjectImage(projectFolder, image.file);
+    if (!img) console.warn(`Slideshow image not found: ${projectFolder}/${image.file}`);
+    return img;
   };
 
   const nextImage = () => {
@@ -40,6 +39,7 @@ const ImageSlideshow = ({ images, projectTitle, projectFolder, onClose }) => {
   if (!images || images.length === 0) return null;
 
   const currentImage = getImagePath(images[currentIndex]);
+  const currentCaption = images[currentIndex]?.caption;
 
   return (
     <Box
@@ -112,18 +112,35 @@ const ImageSlideshow = ({ images, projectTitle, projectFolder, onClose }) => {
           {/* Main image */}
           <Fade in key={currentIndex} timeout={300}>
             {currentImage ? (
-              <Box
-                component="img"
-                src={currentImage}
-                alt={`${projectTitle} - Image ${currentIndex + 1}`}
-                sx={{
-                  maxWidth: '100%',
-                  maxHeight: '70vh',
-                  objectFit: 'contain',
-                  borderRadius: 2,
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                }}
-              />
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                <Box
+                  component="img"
+                  src={currentImage}
+                  alt={`${projectTitle} - Image ${currentIndex + 1}`}
+                  sx={{
+                    maxWidth: '100%',
+                    maxHeight: '65vh',
+                    objectFit: 'contain',
+                    borderRadius: 2,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                  }}
+                />
+                {currentCaption && (
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: 'white',
+                      textAlign: 'center',
+                      maxWidth: '90%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      padding: '8px 16px',
+                      borderRadius: 1,
+                    }}
+                  >
+                    {currentCaption}
+                  </Typography>
+                )}
+              </Box>
             ) : (
               <Box
                 sx={{
@@ -207,7 +224,7 @@ const ImageSlideshow = ({ images, projectTitle, projectFolder, onClose }) => {
                   key={index}
                   component="img"
                   src={thumbImage}
-                  alt={`Thumbnail ${index + 1}`}
+                  alt={image.caption || `Thumbnail ${index + 1}`}
                   onClick={() => setCurrentIndex(index)}
                   sx={{
                     width: 60,
