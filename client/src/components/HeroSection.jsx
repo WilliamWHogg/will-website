@@ -4,7 +4,7 @@ import {
   Container, Box, Grid, Typography, Button, Avatar, Chip, Fade
 } from '@mui/material';
 import {
-  KeyboardArrowDown, Rocket, ChevronRight, Engineering, Code, Build
+  KeyboardArrowDown, Rocket, ChevronRight, Engineering, Build, TrendingUp
 } from '@mui/icons-material';
 import profileImage from '../assets/profile-will.png';
 
@@ -91,8 +91,8 @@ const HeroSection = () => {
                 </Avatar>
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, flexWrap: 'wrap' }}>
                   <Chip icon={<Engineering />} label="Additive Manufacturing" color="primary" variant="outlined" />
-                  <Chip icon={<Code />} label="Materials Research" color="secondary" variant="outlined" />
-                  <Chip icon={<Build />} label="Biomechanical Design" color="primary" variant="outlined" />
+                  <Chip icon={<Build />} label="Mechanical Design" color="secondary" variant="outlined" />
+                  <Chip icon={<TrendingUp />} label="Optimization" color="primary" variant="outlined" />
                 </Box>
               </Box>
             </Grid>
