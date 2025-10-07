@@ -197,7 +197,7 @@
       "folder": "compression-app",
       "link": "#",
       "github": "#",
-      "featured": false,
+      "featured": true,
       "completedDate": "2025-05-03",
       "category": "Research Lab Project",
       "challenges": ["Handling noisy stress-strain data by applying moving-window regression and curvature analysis", "Designing a clean and intuitive UI", "Ensuring results were consistent and reusable across different test conditions and materials"],
