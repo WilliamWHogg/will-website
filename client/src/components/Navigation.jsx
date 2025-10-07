@@ -15,6 +15,7 @@ const Navigation = () => {
     { label: 'Home', path: '/' },
     { label: 'Projects', path: '/projects' },
     { label: 'About', path: '/about' },
+    { label: 'Resume', path: '/resume' },
   ];
 
   const handleDrawerToggle = () => {

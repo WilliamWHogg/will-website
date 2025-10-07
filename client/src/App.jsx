@@ -8,6 +8,7 @@ import HeroSection from './components/HeroSection';
 // FeatureCards removed
 import ProjectsGrid from './components/ProjectsGrid';
 import AboutContent from './components/AboutContent';
+import Resume from './components/Resume';
 
 // Home page component
 function Home() {
@@ -28,6 +29,10 @@ function About() {
   return <AboutContent />;
 }
 
+function ResumePage() {
+  return <Resume />;
+}
+
 
 function App() {
   return (
@@ -41,6 +46,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/about" element={<About />} />
+              <Route path="/resume" element={<ResumePage />} />
             </Routes>
           </Box>
           <Footer />
