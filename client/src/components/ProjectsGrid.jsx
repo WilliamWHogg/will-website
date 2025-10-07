@@ -412,9 +412,7 @@ const ProjectsGrid = () => {
         <Typography variant="h2" gutterBottom sx={{ fontWeight: 700 }}>
           Featured Projects
         </Typography>
-        <Typography variant="h5" color="text.secondary" sx={{ mb: 4, maxWidth: '800px', mx: 'auto' }}>
-          Research projects and professional experience in additive manufacturing, biomechanical materials, and advanced manufacturing processes.
-        </Typography>
+        {/* Subtitle intentionally removed at user's request */}
       </Box>
       
       <Grid container spacing={4}>
