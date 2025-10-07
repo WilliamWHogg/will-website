@@ -34,7 +34,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router basename="/will-website">
+      <Router basename={import.meta.env.BASE_URL}>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navigation />
           <Box sx={{ flexGrow: 1 }}>
