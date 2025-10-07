@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 // FeatureCards removed
 import ProjectsGrid from './components/ProjectsGrid';
-import AboutContent from './components/AboutContent';
 import Resume from './components/Resume';
 
 // Home page component
@@ -25,9 +24,6 @@ function Projects() {
 }
 
 // About page component
-function About() {
-  return <AboutContent />;
-}
 
 function ResumePage() {
   return <Resume />;
@@ -45,7 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
-              <Route path="/about" element={<About />} />
+              {/* About page removed */}
               <Route path="/resume" element={<ResumePage />} />
             </Routes>
           </Box>

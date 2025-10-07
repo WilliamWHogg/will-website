@@ -14,7 +14,7 @@ const Navigation = () => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Projects', path: '/projects' },
-    { label: 'About', path: '/about' },
+  // About page removed
     { label: 'Resume', path: '/resume' },
   ];
 
