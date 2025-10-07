@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "id": 1,
+      "id": 5,
       "title": "Custom Dynamometer for Brushless Motor",
       "description": "Designed and tested a custom dynamometer to measure torque, speed, and efficiency of a BLDC motor using integrated ESP32 control to automatically run tests and collect data.",
       "detailedDescription": "For an experimental design course, I worked with a team to build and evaluate a dynamometer system to characterize the performance of a BL4825O brushless DC motor. The motor was mounted on a lever arm connected to a load cell, while a four-blade propeller submerged in water provided controllable resistance. Load was adjusted by changing the water level in the tank, enabling testing under a wide range of operating conditions. My contribution focused on the electronics and data acquisition system. I assembled the ESP32-based controller, which regulated motor duty cycle, read the motor’s integrated speed sensor, and processed load cell signals to calculate torque. These outputs were combined to calculate efficiency and power at different duty cycles and voltages. MATLAB was used to analyze and plot the collected data. The dynamometer revealed expected motor behavior, including decreasing speed with increasing load, rising current draw with torque, and efficiencies plateauing in the 45–60% range. This validated the system as a reliable low-cost tool for performance characterization when manufacturer data was limited.",
@@ -18,7 +18,7 @@
       "github": "#",
       "featured": true,
       "completedDate": "2024-12-5",
-      "category": "Class Projects",
+      "category": "Class Project",
       "challenges": ["Designing a torque measurement system using a lever arm and load cell", "Managing inconsistent water-based resistance caused by splashing and leakage", "Quickly collect many data points through autonomous testing"],
       "outcomes": ["Delivered a functional dynamometer capable of producing torque, efficiency, and power curves", "Produced a technical report and presentation with performance curves aligned to expected industry data"]
     },
@@ -42,12 +42,12 @@
       "github": "#",
       "featured": true,
       "completedDate": "2024-12-15",
-      "category": "Class Projects",
+      "category": "Class Project",
       "challenges": ["Synchronizing four actuators under uneven loads without binding or induced stress", "Routing wires within the steel frame for outdoor durability", "Coordinating across sub teams to align actuator specs with structural and carriage designs", "Delivering a fully functional, documented system on a tight course deadline"],
       "outcomes": ["Delivered a lift that safely raised 31” in under 30 seconds while supporting over 600 lb", "Fully validated performance through live load testing", "Produced detailed wiring diagrams, circuit layouts, and a maintenance manual for future use", "Demonstrated integration of electrical, mechanical, and software systems into a robust accessibility solution"]
     },
     {
-      "id": 3,
+      "id": 6,
       "title": "Pathfinding Robot",
       "description": "Built and programmed a robot that autonomously navigated a cluttered arena using an overhead camera for localization and an IR sensor for mapping. Implemented continuous breadth-first search on an ESP32 to update the shortest path in real time.",
       "detailedDescription": "For a mechatronics course project, I developed a small autonomous robot capable of navigating through dynamic obstacle layouts. The system used an overhead camera to track the robot's global position and orientation, while a scanning IR distance sensor on a gimbal detected obstacles in the environment. I programmed the ESP32 microcontroller to convert IR scans into a global occupancy map, maintaining a 100x100 resolution grid of the arena. A breadth-first search algorithm continuously updated the map, recalculating shortest paths as new obstacles were detected. The path-finding results were translated into steering commands through a state machine that coordinated driving, obstacle avoidance, and target approach.\nMy contributions included both programming the navigation and mapping system and helping design and assemble the robot hardware, including sensor mounts and wiring. The approach allowed the robot to adapt in real time, avoid repeated collisions, and reach targets more efficiently than many peer robots.",
@@ -64,12 +64,12 @@
       "github": "#",
       "featured": true,
       "completedDate": "2024-11-10",
-      "category": "Class Projects",
+      "category": "Class Project",
       "challenges": ["Running a continuous BFS pathfinding algorithm within the ESP32's limited memory and processing budget", "Filtering noisy IR data to maintain a reliable obstacle map", "Balancing mapping and controls computation"],
       "outcomes": ["Delivered a fully functional autonomous robot with continuous real-time pathfinding", "Demonstrated integration of global localization, local obstacle detection, and embedded control into one system", "Achieved robust navigation performance, with adaptive obstacle avoidance"]
     },
     {
-      "id": 4,
+      "id": 1,
       "title": "Educational Injection Molding Machine",
       "description": "Designed and delivered the heating chamber, plunger assembly, and mold clamping system for a classroom-scale injection molding machine. Combined analysis, prototyping, and machine shop collaboration to create a safe, adaptable teaching tool for undergraduate manufacturing courses.",
       "detailedDescription": "For my senior capstone project, I was responsible for designing and validating the heating chamber, plunger assembly, and mold clamping system of a small-scale injection molding machine intended for classroom demonstrations. The chamber was machined from a 2\"x4\"x12\" steel billet and designed to withstand forces from a 6\" pneumatic cylinder at operating conditions of 300 °C and 5 ksi injection pressure, capable of making complex parts with ABS. I performed hand calculations of thermal expansion and stress, validating the design with FEA to confirm a safety factor of two. A tolerance-critical plunger–bushing interface was developed to prevent leakage or binding, and the chamber was suspended on two 12\" steel rails to thermally isolate it from the frame.\nThe mold clamping system was designed to resist separating forces under full injection pressure while accommodating both 6\"x4\"x2\" and 3\"x4\"x2\" molds with varying sprue locations. To refine the design before machining, we built three full-scale cardboard prototypes to test geometry, ergonomics, and mold alignment. I worked directly with the university machine shop, providing GD&T engineering drawings and adapting features based on machining feedback. Once fabricated, I integrated cartridge heaters, thermocouples, and pneumatic actuation, then conducted validation tests that demonstrated chamber temperature stability within 0.5 °C, reliable sealing, and repeatable mold retention. The completed system was delivered with full documentation, training materials, and a live demonstration for faculty and students.",
@@ -92,12 +92,12 @@
       "github": "#",
       "featured": true,
       "completedDate": "2025-04-30",
-      "category": "Class Projects",
+      "category": "Class Project",
       "challenges": ["Achieving tight tolerances for mechanical seals while accounting for thermal expansion", "Preventing mold separation and leakage under high-pressure injection", "Designing around classroom constraints (height, portability, visibility)", "Collaborating with machinists to align designs with manufacturing capabilities"],
       "outcomes": ["Delivered a fully functional injection molding teaching tool now used in classrooms", "Chamber and plunger assembly validated by analysis and full-scale testing", "Mold clamping system enabled safe, repeatable operation across multiple mold sizes","Produced complete documentation, including operation, maintenance, and troubleshooting guides","Demonstrated ability to lead a subsystem from concept through design, prototyping, machining, and validation"]
     },
     {
-      "id": 5,
+      "id": 3,
       "title": "String Art Printer",
       "description": "Designed and built a machine to automate string art image creation by wrapping a continuous thread around 200–400 pegs on a laser-cut acrylic frame. Served as both a functional prototype and a sandbox for learning CAD, motion control, and electronics integration.",
       "detailedDescription": "This long-term personal project began in 2020 with the goal of automating the creation of string art images that are traditionally done by hand. A manual proof-of-concept demonstrated feasibility but required over 12 hours to complete a single image. To automate the process, I designed and built a machine consisting of a stepper-driven turntable supporting a peg frame and a syringe-based threader that directs the string around selected pegs. A greedy optimization algorithm written in Python generates the image path, which is transmitted via serial communication to an Arduino Uno. The Arduino controls the motion system through stepper drivers, directing thousands of thread placements over multi-hour print cycles.\nThe original timing belt drive achieved only ~1° effective accuracy (vs. 0.09° theoretical), insufficient for the ~0.3° precision required for high-density patterns. To address backlash, I designed a 3D-printed cycloidal drive paired with a BLDC motor and magnetic encoder for PID-controlled positioning. The threader operates on open-loop stepper control with homing via a limit switch. Supporting torque, speed, and accuracy calculations validated feasibility, and the machine has successfully produced early geometric test patterns of ~50 lines.\nI completed all mechanical design, fabrication, wiring, and control integration, while collaborating on the image-generation software. Beyond its practical function, the project has been an ongoing sandbox for experimenting with CAD, FDM/SLA printing, Arduino programming, and motion control design.\n",
@@ -117,12 +117,12 @@
       "github": "#",
       "featured": true,
       "completedDate": null,
-      "category": "Personal Projects",
+      "category": "Personal Project",
       "challenges": ["Reducing backlash in the turntable from ~1° error toward the 0.3° precision", "Designing a low-backlash cycloidal drive as a replacement for the timing belt", "Synchronizing string placement across thousands of cycles without position loss"],
       "outcomes": ["Transitioned from a 12-hour manual proof-of-concept to automated printing of geometric string patterns", "Designed and prototyped a custom cycloidal drive to address backlash limitations.", "Gained substantial experience in CAD, Arduino programming, and precision motion systems through an exploratory, self-driven project"]
     },
       {
-      "id": 6,
+      "id": 4,
       "title": "Light Weight Pully Based Linear Actuator",
       "description": "Designed and built a lightweight linear actuator using carbon fiber tubes, Kevlar cords, and 3D-printed frames. Achieved smooth extension from 0.5 m to 0.9 m with a string-based pulley system, emphasizing force-to-weight efficiency and manufacturability.",
       "detailedDescription": "This personal project explores the use of string actuation to create compact, efficient linear actuators for robotic applications. The actuator frame consists of three 6 mm carbon fiber rods and a 27 mm piston tube, supported by custom one-piece 3D-printed PLA frames at the base, middle, and top. Two Kevlar cords (rated for 120 lbs) are routed through v-groove bearings in the frame, providing a 1:4 pulley ratio between the BLDC motor spools and piston travel. Unlike the first prototype, which used a capstan drive prone to slip, the second prototype employs dual spools—one for extension and one for retraction—eliminating cord slippage.\nThe middle section couples to the piston with a compliant taper fit and    is guided by POM U-groove bearings, while the top section stabilizes the piston with roller bearings. Hardware such as screws, pins, and precision bearings are directly integrated into the printed sections, enabling complex geometries to be produced as single, support-free prints. The actuator is designed to deliver a theoretical peak force of 25 N and no-load speed of 1 m/s, with mechanical hard stops preventing over-travel. Future iterations will integrate a pulley-mounted load cell to enable end-of-travel detection and closed-loop force control.\nWhile still at the proof-of-concept stage, the project demonstrates the feasibility of lightweight, manufacturable actuators with excellent force-to-weight ratios. Potential applications include robotic legs for quadrupeds or compact Stewart platforms.",
@@ -139,7 +139,7 @@
       "github": "#",
       "featured": true,
       "completedDate": null,
-      "category": "Personal Projects",
+      "category": "Personal Project",
       "challenges": ["Eliminating cord slip from the original capstan-driven prototype", "Designing complex one-piece printed frames with internal channels and features for easy assembly and low weight", "Balancing stiffness and strength while keeping mass under 600 g","Integrating bearings into printed parts without compromising manufacturability"],
       "outcomes": ["Built two functional prototypes, with Prototype 2 demonstrating smooth and reliable extension/retraction", "Refined actuator design achieving extension from 0.5 m to 0.9 m with ~600 g total mass", "Established a modular, manufacturable approach suitable for advanced robotic systems", "Positioned the design for future implementation of load sensing and closed-loop control"]
     },
@@ -161,7 +161,7 @@
       "github": "#",
       "featured": true,
       "completedDate": "2025-07-05",
-      "category": "Personal Projects",
+      "category": "Personal Project",
       "challenges": ["Achieving accurate alignment of ten sensors for consistent multi-spot coverage", "Interpolating sensor data to provide smooth LED feedback across vehicle sizes", "Protecting electronics with custom enclosures while maintaining precision alignment"],
       "outcomes": ["Delivered a fully functional smart parking system supporting two parking spots", "Achieved sub-inch accuracy in guiding vehicles to stop within the tight carport clearance", "Improved daily usability by providing clear, intuitive feedback to drivers", "Demonstrated integration of sensor fusion, embedded control, and user-centered design in a real-world application"]
     },
@@ -180,7 +180,7 @@
       "github": "#",
       "featured": true,
       "completedDate": "2025-05-19",
-      "category": "Research Lab Projects",
+      "category": "Research Lab Project",
       "challenges": ["Translating image processing steps (thresholding, filtering, circle detection) into a user-friendly UI", "Ensuring robust particle detection across varying image types (SEM vs optical)", "Achieving reliable results without requiring much manual tuning for each dataset"],
       "outcomes": ["Reduced powder particle analysis time from ~1 hour to under 3 minutes per image", "Delivered an easy-to-use application adopted by lab peers for both research and quality control", "Contributed to a pending research publication on LPBF Ti64 powder degradation"]
     },
@@ -197,17 +197,17 @@
       "folder": "compression-app",
       "link": "#",
       "github": "#",
-      "featured": true,
+      "featured": false,
       "completedDate": "2025-05-03",
-      "category": "Research Lab Projects",
+      "category": "Research Lab Project",
       "challenges": ["Handling noisy stress-strain data by applying moving-window regression and curvature analysis", "Designing a clean and intuitive UI", "Ensuring results were consistent and reusable across different test conditions and materials"],
       "outcomes": ["Reduced dataset analysis time by ~5x (3 hours to 20 minutes for 20 datasets)", "Provided consistent reporting of modulus and yield strength across projects", "Exported values and plots directly to Excel, streamlining data management", "Adopted by lab peers for ongoing mechanical testing and materials research"]
     }
   ],
   "categories": [
-    "Class Projects",
-    "Personal Projects",
-    "Research Lab Projects"
+    "Class Project",
+    "Personal Project",
+    "Research Lab Project"
   ],
   "statuses": [
     "Planning",

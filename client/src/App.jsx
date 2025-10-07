@@ -5,7 +5,7 @@ import theme from './theme';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
-import FeatureCards from './components/FeatureCards';
+// FeatureCards removed
 import ProjectsGrid from './components/ProjectsGrid';
 import AboutContent from './components/AboutContent';
 
@@ -14,7 +14,6 @@ function Home() {
   return (
     <>
       <HeroSection />
-      <FeatureCards />
     </>
   );
 }
