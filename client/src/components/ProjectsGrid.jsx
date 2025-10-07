@@ -261,12 +261,6 @@ const ProjectCard = ({ project, index }) => {
                   {expanded ? <ExpandLess /> : <ExpandMore />}
                 </IconButton>
               </Box>
-              {/* Project category chip */}
-              {project.category && (
-                <Box sx={{ mb: 2 }}>
-                  <Chip label={project.category} size="small" variant="outlined" />
-                </Box>
-              )}
               
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>
                 {project.description}
