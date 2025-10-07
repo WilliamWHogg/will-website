@@ -81,7 +81,7 @@ const HeroSection = () => {
                 </Avatar>
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, flexWrap: 'wrap' }}>
                   <Chip icon={<Engineering />} label="Additive Manufacturing" color="primary" variant="outlined" />
-                  <Chip icon={<Build />} label="Mechanical Design" color="secondary" variant="outlined" />
+                  <Chip icon={<Build />} label="System Design" color="secondary" variant="outlined" />
                   <Chip icon={<TrendingUp />} label="Optimization" color="primary" variant="outlined" />
                 </Box>
               </Box>
