@@ -45,7 +45,7 @@ const HeroSection = () => {
                   Mechanical Engineer & Creative Problem Solver
                 </Typography>
                 <Typography variant="h6" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8, maxWidth: '600px', mx: { xs: 'auto', md: 0 } }}>
-                  I’m a mechanical engineering student specializing in metal additive manufacturing, mechatronics, and process optimization. I build hardware and control systems, run experiments, and use data‑driven methods to improve manufacturing processes.
+                  I’m a mechanical engineering student specializing in metal additive manufacturing, mechatronics, and process optimization. I build hardware and control systems, run experiments, and use data-driven methods to improve manufacturing processes.
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                   <Button 
@@ -58,16 +58,7 @@ const HeroSection = () => {
                   >
                     View My Projects
                   </Button>
-                  <Button 
-                    variant="outlined" 
-                    size="large" 
-                    component={Link} 
-                    to="/contact"
-                    endIcon={<ChevronRight />}
-                    sx={{ fontSize: '1.1rem', px: 4, py: 1.5 }}
-                  >
-                    Get In Touch
-                  </Button>
+                  {/* Contact button removed */}
                 </Box>
               </Box>
             </Grid>
