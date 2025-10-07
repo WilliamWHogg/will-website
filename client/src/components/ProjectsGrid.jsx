@@ -400,8 +400,11 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const ProjectsGrid = () => {
-  // Get featured projects from the JSON data
-  const projectList = projectsData.projects.filter(project => project.featured);
+  // Get featured projects from the JSON data and sort by numeric id (ascending)
+  const projectList = projectsData.projects
+    .filter(project => project.featured)
+    .slice()
+    .sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
