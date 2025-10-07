@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, IconButton } from '@mui/material';
-import { GitHub, LinkedIn, Email } from '@mui/icons-material';
+import { School, LinkedIn, Email } from '@mui/icons-material';
 
 const Footer = () => {
   return (
@@ -20,18 +20,18 @@ const Footer = () => {
           </Typography>
           
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <IconButton 
-              color="inherit" 
-              href="https://github.com/williamhogg" 
+            <IconButton
+              color="inherit"
+              href="https://scholar.google.com/citations?user=VKsGGyMAAAAJ&hl=en"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub Profile"
+              aria-label="Google Scholar Profile"
             >
-              <GitHub />
+              <School />
             </IconButton>
             <IconButton 
               color="inherit" 
-              href="https://linkedin.com/in/williamhogg" 
+              href="https://www.linkedin.com/in/will-hogg/" 
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
