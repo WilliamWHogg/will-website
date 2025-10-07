@@ -18,7 +18,7 @@ export default defineConfig({
       },
     },
   },
-  base: '/will-website/',
+  base: '/',
   server: {
     port: 3000,
     host: true,
