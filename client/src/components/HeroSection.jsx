@@ -45,8 +45,7 @@ const HeroSection = () => {
                   Mechanical Engineer & Creative Problem Solver
                 </Typography>
                 <Typography variant="h6" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8, maxWidth: '600px', mx: { xs: 'auto', md: 0 } }}>
-                  From kinetic art machines and precision actuators to biomedical research and manufacturing optimization. 
-                  I bridge the gap between innovative engineering and practical solutions that make a difference.
+                  I’m a mechanical engineering student specializing in metal additive manufacturing, mechatronics, and process optimization. I build hardware and control systems, run experiments, and use data‑driven methods to improve manufacturing processes.
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                   <Button 
