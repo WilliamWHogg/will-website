@@ -4,7 +4,8 @@ import {
   Container, Box, Grid, Typography, Button, Avatar, Chip, Fade
 } from '@mui/material';
 import {
-  KeyboardArrowDown, Rocket, ChevronRight, Engineering, Build, TrendingUp
+  KeyboardArrowDown, Rocket, ChevronRight, Engineering, Build, TrendingUp,
+  LinkedIn, School, Email, Description
 } from '@mui/icons-material';
 import profileImage from '../assets/profile-will.png';
 
@@ -57,6 +58,47 @@ const HeroSection = () => {
                     sx={{ fontSize: '1.1rem', px: 4, py: 1.5 }}
                   >
                     View My Projects
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    href="https://www.linkedin.com/in/will-hogg/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    endIcon={<LinkedIn />}
+                    sx={{ fontSize: '1.1rem', px: 3, py: 1.5 }}
+                  >
+                    Connect on LinkedIn
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    href="https://scholar.google.com/citations?user=VKsGGyMAAAAJ&hl=en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    endIcon={<School />}
+                    sx={{ fontSize: '1.1rem', px: 3, py: 1.5 }}
+                  >
+                    Read My Publications
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    href="mailto:WilliamWHogg@gmail.com"
+                    endIcon={<Email />}
+                    sx={{ fontSize: '1.1rem', px: 3, py: 1.5 }}
+                  >
+                    Email Me
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    component={Link}
+                    to="/resume"
+                    endIcon={<Description />}
+                    sx={{ fontSize: '1.1rem', px: 3, py: 1.5 }}
+                  >
+                    View My Resume
                   </Button>
                   {/* Contact button removed */}
                 </Box>
