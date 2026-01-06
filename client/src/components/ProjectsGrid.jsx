@@ -257,9 +257,16 @@ const ProjectCard = ({ project, index }) => {
                 <Typography variant="h5" sx={{ fontWeight: 600, flex: 1 }}>
                   {project.title}
                 </Typography>
-                <IconButton size="small" sx={{ ml: 1 }} onClick={handleToggleExpand}>
-                  {expanded ? <ExpandLess /> : <ExpandMore />}
-                </IconButton>
+                <Button
+                  size="small"
+                  sx={{ ml: 1 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleToggleExpand();
+                  }}
+                >
+                  {expanded ? 'Show Less' : 'Show More'}
+                </Button>
               </Box>
               
               <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.6 }}>

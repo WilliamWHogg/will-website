@@ -8,8 +8,8 @@
       "technologies": ["ESP32 Microcontroller", "Load Cell Measurement", "BLDC Motor", "Embedded C Programming", "MATLAB Data Analysis", "Experimental Design"],
       "status": "Completed",
       "images": [
-        { "file": "main.jpg", "caption": "Completed BLDC motor dynamometer setup" },
         { "file": "running.jpg", "caption": "Dynomometer running with water providing load" },
+        {"file": "main.jpg", "caption": "Completed BLDC motor dynamometer setup" },
         { "file": "speed-torque-plot.jpg", "caption": "Speed-torque performance curve" },
         { "file": "torque-efficiency-plot.jpg", "caption": "Motor load vs efficiency characteristics" }
       ],
