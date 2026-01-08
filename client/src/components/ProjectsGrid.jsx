@@ -12,7 +12,7 @@ import projectsData from '../data/projects.json';
 import ImageSlideshow from './ImageSlideshow';
 import { getProjectImage } from '../utils/imageLoader';
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, selectedTopic, onTopicClick }) => {
   const [expanded, setExpanded] = useState(false);
   const [slideshowOpen, setSlideshowOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -275,7 +275,7 @@ const ProjectCard = ({ project, index }) => {
               
               <Box sx={{ mb: 2 }}>
                 <Typography variant="subtitle2" sx={{ mb: 1, color: 'primary.main' }}>
-                  Technologies:
+                  Topics:
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                   {project.technologies.map((tech, techIdx) => (
@@ -283,8 +283,13 @@ const ProjectCard = ({ project, index }) => {
                       key={techIdx}
                       label={tech}
                       size="small"
-                      variant="outlined"
-                      sx={{ fontSize: '0.75rem' }}
+                      variant={selectedTopic === tech ? 'filled' : 'outlined'}
+                      color={selectedTopic === tech ? 'primary' : 'default'}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onTopicClick(tech);
+                      }}
+                      sx={{ fontSize: '0.75rem', cursor: 'pointer' }}
                     />
                   ))}
                 </Box>
@@ -407,11 +412,18 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const ProjectsGrid = () => {
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
+  const handleTopicClick = (topic) => {
+    setSelectedTopic(selectedTopic === topic ? null : topic);
+  };
+
   // Get featured projects from the JSON data and sort by numeric id (ascending)
   const projectList = projectsData.projects
     .filter(project => project.featured)
     .slice()
-    .sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+    .sort((a, b) => (a.id ?? 0) - (b.id ?? 0))
+    .filter(project => !selectedTopic || project.technologies.includes(selectedTopic));
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -421,10 +433,23 @@ const ProjectsGrid = () => {
         </Typography>
         {/* Subtitle intentionally removed at user's request */}
       </Box>
+
+      {selectedTopic && (
+        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body1" color="text.secondary">
+            Showing projects with topic:
+          </Typography>
+          <Chip
+            label={selectedTopic}
+            color="primary"
+            onDelete={() => setSelectedTopic(null)}
+          />
+        </Box>
+      )}
       
       <Grid container spacing={4}>
         {projectList.map((project, idx) => (
-          <ProjectCard key={idx} project={project} index={idx} />
+          <ProjectCard key={project.id || idx} project={project} index={idx} selectedTopic={selectedTopic} onTopicClick={handleTopicClick} />
         ))}
       </Grid>
     </Container>
