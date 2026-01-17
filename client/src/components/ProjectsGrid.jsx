@@ -12,7 +12,7 @@ import projectsData from '../data/projects.json';
 import ImageSlideshow from './ImageSlideshow';
 import { getProjectImage } from '../utils/imageLoader';
 
-const ProjectCard = ({ project, index, selectedTopic, onTopicClick }) => {
+const ProjectCard = ({ project, index, selectedTopics, onTopicClick }) => {
   const [expanded, setExpanded] = useState(false);
   const [slideshowOpen, setSlideshowOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -283,8 +283,8 @@ const ProjectCard = ({ project, index, selectedTopic, onTopicClick }) => {
                       key={techIdx}
                       label={tech}
                       size="small"
-                      variant={selectedTopic === tech ? 'filled' : 'outlined'}
-                      color={selectedTopic === tech ? 'primary' : 'default'}
+                      variant={selectedTopics.includes(tech) ? 'filled' : 'outlined'}
+                      color={selectedTopics.includes(tech) ? 'primary' : 'default'}
                       onClick={(e) => {
                         e.stopPropagation();
                         onTopicClick(tech);
@@ -337,6 +337,15 @@ const ProjectCard = ({ project, index, selectedTopic, onTopicClick }) => {
                         • {outcome}
                       </Typography>
                     ))}
+                  </Box>
+                )}
+
+                {/* Category */}
+                {project.category && (
+                  <Box sx={{ mb: 2 }}>
+                    <Typography variant="subtitle2" color="text.secondary">
+                      Category: {project.category}
+                    </Typography>
                   </Box>
                 )}
 
@@ -412,10 +421,22 @@ const ProjectCard = ({ project, index, selectedTopic, onTopicClick }) => {
 };
 
 const ProjectsGrid = () => {
-  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [selectedTopics, setSelectedTopics] = useState([]);
 
   const handleTopicClick = (topic) => {
-    setSelectedTopic(selectedTopic === topic ? null : topic);
+    setSelectedTopics(prev => 
+      prev.includes(topic) 
+        ? prev.filter(t => t !== topic) 
+        : [...prev, topic]
+    );
+  };
+
+  const handleRemoveTopic = (topic) => {
+    setSelectedTopics(prev => prev.filter(t => t !== topic));
+  };
+
+  const clearAllTopics = () => {
+    setSelectedTopics([]);
   };
 
   // Get featured projects from the JSON data and sort by numeric id (ascending)
@@ -423,7 +444,7 @@ const ProjectsGrid = () => {
     .filter(project => project.featured)
     .slice()
     .sort((a, b) => (a.id ?? 0) - (b.id ?? 0))
-    .filter(project => !selectedTopic || project.technologies.includes(selectedTopic));
+    .filter(project => selectedTopics.length === 0 || selectedTopics.every(topic => project.technologies.includes(topic)));
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -434,22 +455,48 @@ const ProjectsGrid = () => {
         {/* Subtitle intentionally removed at user's request */}
       </Box>
 
-      {selectedTopic && (
-        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}>
+      {/* Master Topic Filter */}
+      <Box sx={{ mb: 4 }}>
+        <Typography variant="subtitle1" sx={{ mb: 2, color: 'text.secondary', textAlign: 'center' }}>
+          Filter by Topic:
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
+          {projectsData.topics && projectsData.topics.map((topic, idx) => (
+            <Chip
+              key={idx}
+              label={topic}
+              size="small"
+              variant={selectedTopics.includes(topic) ? 'filled' : 'outlined'}
+              color={selectedTopics.includes(topic) ? 'primary' : 'default'}
+              onClick={() => handleTopicClick(topic)}
+              sx={{ cursor: 'pointer' }}
+            />
+          ))}
+        </Box>
+      </Box>
+
+      {selectedTopics.length > 0 && (
+        <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
           <Typography variant="body1" color="text.secondary">
-            Showing projects with topic:
+            Filtering by:
           </Typography>
-          <Chip
-            label={selectedTopic}
-            color="primary"
-            onDelete={() => setSelectedTopic(null)}
-          />
+          {selectedTopics.map((topic, idx) => (
+            <Chip
+              key={idx}
+              label={topic}
+              color="primary"
+              onDelete={() => handleRemoveTopic(topic)}
+            />
+          ))}
+          <Button size="small" onClick={clearAllTopics} sx={{ ml: 1 }}>
+            Clear All
+          </Button>
         </Box>
       )}
       
       <Grid container spacing={4}>
         {projectList.map((project, idx) => (
-          <ProjectCard key={project.id || idx} project={project} index={idx} selectedTopic={selectedTopic} onTopicClick={handleTopicClick} />
+          <ProjectCard key={project.id || idx} project={project} index={idx} selectedTopics={selectedTopics} onTopicClick={handleTopicClick} />
         ))}
       </Grid>
     </Container>
