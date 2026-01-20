@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Box, Typography, Button } from '@mui/material';
 
 const Resume = () => {
-  const resumeUrl = '/resume.pdf';
+  const resumeUrl = '/William_Hogg_Resume.pdf';
 
   return (
     <Container maxWidth="md" sx={{ py: 8 }}>
